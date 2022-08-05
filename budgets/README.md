@@ -1,0 +1,2 @@
+# Budgets
+AWS allows to set a budget for the current account or the current user. You can also define some budget alerts when you reach a percentage of the budget or an absolute value both real or forecasted.
