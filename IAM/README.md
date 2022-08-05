@@ -19,7 +19,7 @@ Some utility tools for security
 ### IAM Credntials Report
 Account-level tool that gives a report that lists all the account's users and the status of their various credentials
 
-### IAM Access Advisor
+### IAM Access Advisord
 User-level tool the shows the service permissions granted to a user and when those services were last accessed. Useful when there is the need to revise the policies
 
 ## Best Practices
