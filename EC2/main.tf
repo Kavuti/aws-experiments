@@ -15,7 +15,7 @@ resource "aws_iam_instance_profile" "christian_instance_profile" {
 resource "aws_instance" "christian_instance" {
   ami           = data.aws_ami.amazon_linux_ami.id
   instance_type = "t2.micro"
-  
+
   iam_instance_profile = aws_iam_instance_profile.christian_instance_profile.name
 
   security_groups = [aws_security_group.christian_security_group.name, ]
