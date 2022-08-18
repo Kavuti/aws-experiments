@@ -60,30 +60,29 @@ resource "aws_security_group" "christian_security_group" {
   }
 }
 
-resource "aws_instance" "christian_instance" {
-  ami           = data.aws_ami.amazon_linux_ami.id
-  instance_type = "t2.micro"
+resource "aws_launch_template" "christian_launch_template" {
+  image_id             = data.aws_ami.amazon_linux_ami.id
+  name                 = "christian_launch_template"
+  instance_type        = "t2.micro"
+  user_data            = filebase64("${path.module}/ec2-user-data.sh")
+  security_group_names = [aws_security_group.christian_security_group.name, ]
+}
 
-  security_groups = [aws_security_group.christian_security_group.name, ]
+resource "aws_autoscaling_group" "christian_auto_scaling" {
+  name               = "christian-auto-scaling"
+  availability_zones = ["eu-west-3a", "eu-west-3b", "eu-west-3c"]
+  max_size           = 3
+  min_size           = 1
+  desired_capacity   = 2
+  target_group_arns  = [aws_lb_target_group.christian_lb_target_group.arn]
 
-  user_data_base64 = filebase64("${path.module}/ec2-user-data.sh")
 
-  tags = {
-    Name = "Christian Machine"
+  launch_template {
+    id      = aws_launch_template.christian_launch_template.id
+    version = "$Latest"
   }
 
   lifecycle {
-    ignore_changes = [
-      tags,
-    ]
+    create_before_destroy = true
   }
 }
-
-# resource "aws_autoscaling_group" "christian_auto_scaling" {
-#   name               = "christian-auto-scaling"
-#   availability_zones = ["eu-west-3a", "eu-west-3b", "eu-west-3c"]
-#   max_size           = 3
-#   min_size           = 1
-#   desired_capacity   = 2
-#   mix
-# }

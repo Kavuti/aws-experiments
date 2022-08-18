@@ -1,8 +1,3 @@
-resource "aws_launch_template" "christian_launch_template" {
-  name          = "christian_launch_template"
-  instance_type = "t2.micro"
-}
-
 resource "aws_security_group" "christian_lb_sg" {
   name        = "christian_lb_sg"
   description = "Security group for Christian Load Balancer"
@@ -43,14 +38,20 @@ resource "aws_lb" "christian_load_balancer" {
 }
 
 resource "aws_lb_target_group" "christian_lb_target_group" {
-  name     = "christian-lb-target-group"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = data.aws_vpc.default_vpc.id
+  name        = "christian-lb-target-group"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = data.aws_vpc.default_vpc.id
+  target_type = "instance"
 }
 
-resource "aws_lb_target_group_attachment" "christian_lb_tg_attachment" {
-  target_group_arn = aws_lb_target_group.christian_lb_target_group.arn
-  target_id        = aws_instance.christian_instance.id
-  port             = 80
+resource "aws_lb_listener" "christian_instances_listener" {
+  load_balancer_arn = aws_lb.christian_load_balancer.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.christian_lb_target_group.arn
+  }
 }

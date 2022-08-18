@@ -40,3 +40,13 @@ The ASG can work with multiple scaling strategies:
 - manual: update manually the size of an ASG
 - dynamic: respond to traffic demand. It can be simple or step. Example: when a CloudWatch alarm is triggered then add 2 units, or remove 1. It can be also Target Tracking. Example: Ensure CPU is around 40%. It can be also scheduled, to anticipate a scaling based on known usage patterns. Example: increase the min capacity to 10 in a specific date at specific time.
 - predictive: uses machine learning to predict future traffic ahead of time. Useful with predictable time-based patterns.
+
+## Terraform
+On the AWS provider for Terraform, in order to create an ASG that connects instances to the Application Load Balancer you need to create the following resources:
+- aws_lb
+- aws_autoscaling_group
+- aws_lb_target_group (machines group, in the scope of the VPC)
+- aws_launch_template
+- aws_security_group (for the instances)
+- aws_security_group (for the load balancer)
+- aws_lb_listener (maybe also aws_lb_listener_rule to have multiple operations for multiple target groups, protocols, uris, etc.)
