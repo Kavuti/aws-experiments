@@ -103,3 +103,55 @@ After 30 days of not accessing they are moved in Infrequent Access.
 After 90 days in Archive Instance Access tier. 
 Optionally from 90 to 700+ days (configurable) they are moved to Archive Access tier.
 Optionally from 180 to 700+ days (configurable) they are moved to Deep Archive Access tier
+
+## S3 Object Lock
+To adapt a WORM (Write Once Read Many) model. Block an object version deletion for a specified amount of time.
+
+## Glacier Vault Lock
+Same model, lock the policy for future edits. It's helpful for compliance and data retention
+
+## Encryption
+Three types:
+- No encryption
+- Server-side, the S3 encrypts the file after receiving it.
+- Client-side, the user encrypts the file before uploading it.
+
+## Shared Responsibility model
+AWS will be responsible of security, durability, availability, concurrent loss of data in two facilities, configuration and vulnerability analysis and compliance validation.
+The user is responsible of versioning, policies, replication, logging, monitoring, Storage classes and data encryption.
+
+## AWS Snow Family
+High secure portable device used to collect and process data at the edge or to migrate data in/out of AWS. The data migrations should be done with Snow family in order to have good performance in migrating data against limited connectivity, bandwidth, network costs and shared bandwidth, connection stability.
+With snow family, the client requires a device to AWS, uploads there the device and then it's reshipped to aws that will do the import/export.
+Steps:
+- request the snowball device
+- install the snowball client or AWS OpsHub on servers
+- connect the snowball to the servers and copy the files
+- ship back the devies
+- data will be loaded into an S3
+- snowball is wiped
+
+The second use case after migrations is the edge computing. It can be used to process data while it's being created on an edge location, with limited or absent connectivity and computing power. Usually it's used to preprocess data, machine learning, transcoding media.
+All the snow family devices can run EC2 instances and Lambda functions (using AWS IoT Greengrass). There are long-term options to save some costs (1 and 3 years)
+
+### Snowball Edge
+Physical box to move TBs or PBs, pay per data transfer job, S3 compatible. It can be storage optimized, 80 TB or compute Optimized, 42 TB. It's used for large data cloud migrations, Data Center decommision or disaster recovery. The storage optimized can be clustered up to 15 nodes. The compute optimized can have an optional GPU. It also has 52 vCPUs and 208 GiB of ram. Generally, the compute optimized is used for high computing workloads such as machine learning.
+
+### Snowcone
+Smaller than edge, more portable. 8TB of usable storage. Snowcone should be used when Snowball does not fit physically. It can be sent back to AWS or connected to internat and use AWS DataSync to send the data.
+
+### Snowmobile
+It's a real truck to transfer exabytes of data. It has 100 PB of capacity (multiple can be used in parallel). High security, controlled, geolocalized and 24/7 surveillance. It's obviously completely offline.
+
+### Smaller Snowcone
+Used for edge computing, 2CPU, 4GB ram, usb-c.
+
+### OpsHub
+It's a software to manage the devices, with a GUI. Used to unlocking devices, transferring files, managing instances running on devices, monitor devices, launch compatible services on devices (EC2, datasync, nfs)
+
+## Storage Gateway
+AWS pushed for hybrig cloud. Due to long migrations, secuirty requirements, compliance requirements, and strategy. Storage Gateway is used to expose on-premises data. Can bridge on-premise data with cloud data. It's useful for disaster recovery, backup and restore, tiered storage. There are 3 types:
+- File Gateway
+- Volume Gateway
+- Tape Gateway
+
