@@ -20,7 +20,7 @@ There can be also a latency policy, that will respond to the user according to t
 There is also the failover policy, based on healthchecks on a primary instance. If the healthcheck fails, the DNS will respond with the address of a Failover instance
 
 ## CloudFront
-It's a CDN and improves read performances by caching content in differnete edge locations. Improves the user experience. It's made by 216 Points of prefence (all the AWS Edgle locations). It has a DDOS protection integration with Shield and Web Application Firewall.
+It's a CDN and improves read performances by caching content in differnete edge locations. Improves the user experience. It's made by 216 Points of prefence (all the AWS Edge locations). It has a DDOS protection integration with Shield and Web Application Firewall (WAF).
 
 It can cache content from S3 buckets for distributing files, with enhanced security with CloudFront Origin Access Identity and can be used to upload files to the S3. It can cache also any custom HTTP origin such as ALB, EC2 instances, S3 websites or any other HTTP backend.
 
@@ -45,3 +45,12 @@ It's made for Hybrid Cloud. Outposts are server racks that offer the same AWS in
 ## WaveLength
 WaveLength Zones are infrastructure deployments embedded with the 5G networks infrastructure. Bring AWS services to the edge of 5G networks. The traffic does not leave the CSP network and there is a direct connection with the AWS region.
 
+## Local Zones
+Place AWS resources coser to end user to run latency-sensitive applications. They are like an extension of a region and can be included in a VPC to be managed like additional AZs. It's compatible with plenty of services. 
+
+## Global Application Architecture
+You can architect an application in a few different ways:
+- Single Region, Single AZ: no HA, no global latency improvement, easy to set up 
+- Single Region, Multi AZ: you HA, but still no global latency improvement, a little more difficult to set up
+- Multi Region Active-Passive: One region is active (read+write) others are passive (only read). You improve global reads' latency but not writes. It more difficult to set up
+- Multi Region Active-Active: all regions active: You improve global latency and it's the most difficult to set up

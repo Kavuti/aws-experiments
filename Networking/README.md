@@ -35,7 +35,7 @@ VPC Endpoints allow to connect to AWS services using a private network instead o
 ## AWS PrivateLink
 AKA VPC Endpoint Services. It's a way to securely and scalably expose a service to thousands of VPCs. VPC Peering would not scale for many VPCs. This does not require VPC peering, gateways or route tables. To do it the VPC vendor must create a Network Load Balancer, and the consumer VPC must create a Network Interface. Then PrivateLink will connect these two through the AWS private network. 
 
-## Direct COnnect & Site-to-Site VPN
+## Direct Connect & Site-to-Site VPN
 Site-to-Site VPN is used to connect on-premises VPN to AWS. The connection is encrypted and goes through the public internet. The on-premises server must install a Customer Gateway and on AWS you must create a Virtual Private Gateway. Then you can connect them with the Site-to-Site VPN
 Direct Connect is used to enstablish a physical connection between on-premises and AWS. It's a private connection, secure and fast but a physical connection must be made, so it takes at least a month to be established. 
 To decide which to use, you have to ask yourself if the connection must be private or not and how much quickly it needs to be established.
