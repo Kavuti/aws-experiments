@@ -37,7 +37,7 @@ Fully managed cache for DynamoDB. Specific for DynamoDB (not an ElastiCache). Ap
 It makes a table accessible with low latency in multiple regions. It's a 2-way replication, so the application can read/write in any region and data will be replicated. 
 
 ## Redshift
-Postgresql based but not used for OLTP. It's an OLAP database, used for analytics and data warehousing. In redshift you load data once every a while, maybe an hour instead of every second. Has 10x performance thant other data warehouses, scales to PBs of data. It's column based instead of row based. Has a Massive Parallele Query execution. It's pay as you go based on the instances provisioned. Has a SQL interface. Business Intelligence tools like Quicksight or Tableau integrate with it.
+Postgresql based but not used for OLTP. It's an OLAP database, used for analytics and data warehousing. In redshift you load data once every a while, maybe an hour instead of every second. Has 10x performance than other data warehouses, scales to PBs of data. It's column based instead of row based. Has a Massive Parallel Query execution. It's pay as you go based on the instances provisioned. Has a SQL interface. Business Intelligence tools like Quicksight or Tableau integrate with it.
 
 ## EMR 
 Elastic MapReduce. It creates Hadoop Clusters to analyze and process big data. The clusters may be of hundreds of EC2 instances. Also supports others like Spark, HBase and others. It takes care of all the provisioning and configuration. There is an autoscaling and is integrated with spot instances. It can be used for data processing, ML, big data analytics, web indexing and all that involves a vast amount of data and processing.
