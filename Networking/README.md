@@ -10,7 +10,13 @@ The concepts to know are:
 VPC is Virtual Private Cloud and is a private network in the scope of a region where you can deploy resources.
 Subnets are parts of a VPC and are in the scope of the Availability Zone. A public subnet is a subnet accessible from the internet. A private subnet is not accessible from the internet.
 Subnets are made of Route Tables.
-Any VPC has a CIDR rang
+Any VPC has a CIDR range.
+
+## IP Addresses.
+AWS supports IPv4. When an instance is created it gets a new public IPv4 even when you stop and restart them. There are also private IPv4 usable in internal networking, that is fixed for each instance.
+Elastic IPs are fixed public IPv4 addresses attachable to EC2 instances.
+You pay for it only if the instance is stopped or it's not attached to any instance.
+It supports also IPv6 addresses. Every IP is public.
 
 ## Internate Gateway & NAT Gateway
 To create a public subnet, you must create an Internet Gateway and set a route from the subnet to the gateway. This makes the instance able to connect to the internet and to be public. NAT Gateway and NAT instances are made to allow the instances in Private Subnets to access the internet while remaining private. The NAT Gateway (or instance) is placed in the Public Subnet and we create a route from the private subnet to the NAT Gateway and from the NAT Gateway to the Internet Gateway.

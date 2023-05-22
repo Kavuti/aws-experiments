@@ -34,7 +34,7 @@ Debugging distributes systems is hard. X-Ray makes a visual analysis of the our 
 - review requests behavior
 - find errors and exceptions
 - check is SLAs are met
-- check why a service is throdttled
+- check why a service is throttled
 - identify which users are impacted from an outage
 
 ## CodeGuru
