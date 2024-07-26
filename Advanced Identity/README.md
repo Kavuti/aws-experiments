@@ -1,4 +1,4 @@
-## Security Token Service
+## Security Token Service
 Enables to create limited-provileges credentials to access resources. The use cases are:
 - Identity federation, to manage user identity with external systems.
 - IAM Roles for cross/same account access
