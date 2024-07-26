@@ -12,6 +12,13 @@ If you run a database in an EC2 you will have to self-manage all these things.
 ## RDS
 It's a managed Relational database service. It can be a Postgres, MySQL, MariaDB, Oracle, SQL Server or Aurora (aws proprietary). It's backed up and restored to specific timestamps continuously. It's replicated, Multi AZ for disaster recovery. There are maintenance windows for upgrades. The storage it uses it's a gp2 or io1. You cannot SSH into the RDS instances.
 
+The multi-az deployment creates other inactive replicas that start when the primary become inactive. The backups are taken by the inactive replica. The database engine versione upgrades happen on the primary replica.
+
+The Read replicas allow to have replicas used only for reading. They are not considered in backups. They can be spanned across the same AZ, multiple AZs or multiple regions. They can be promoted to standalon instances. The version upgrades are independent from the source instance.
+
+The RPO (Recovery Point Objective) is the maximum period of data loss aceptable, measured in minutes, over which the loss would be unacceptable.
+The RTO (Recovery Time Objective) is the maxuimum downtime permitted to recover form backup. Measured in hours or days.
+
 ### Aurora
 Not open source. It supports PostgreSQL and MySQL. It's cloud optimized and claims 5x performance improvement over MySQL and 3x over postgres. Storage increments automatically from 10GB to 64 TB. Costs 20% more but is more efficient and is not in the free tier.
 
