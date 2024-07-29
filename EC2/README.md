@@ -24,6 +24,9 @@ Script launched once when machine starts. They could do something like installin
 ## What happens when you create an instance
 You have to set sizing and configuration options mentioned above. If set, the virtual machine will acquire a public IP to use to access it. If the instance is stopped, you stop paying for the compute. If an instance is restarted, it will acquire a new different public IP if set to. If you terminate an instance it will be permanently destroyed. The storage volume related to the machine could be whether deleted or preserved according to the configuration option.
 
+## Hibernation
+When an instance is launched with the Hibernation enabled, you can create it, configure it and then hibernate it for faster warm-up when it's needed. The hibernation saves the machine's state into the EBS volume, RAM data included. When the instance is activated, the processes that were running before the hibernation are resumed. This enables fast boot on instances when it's critical to have near-to-zero downtime.
+
 ## Instance types
 There are 5 different types of EC2:
 - General Purpose
@@ -58,7 +61,7 @@ they are identified by letter "c"
 Fast performance for workloads with large datasets in memory:
     - dmbs
     - web scaled distributed cache stores
-    - in memory databse
+    - in memory database
     - real time processing
 they are identified by letter "m"
 
@@ -113,7 +116,7 @@ No long-term commitment
 Ideal fro short and un-interrupted workloads.
 
 ### Reserved
-Up to 72% discount, you reserve specific instance type in specific region, tenancy and specific os. You can reserve it for 1 or 3 years (the more time, the more discount) and you can pay with a partial, total or null upfront (upfront = discount). You can reserve in a specific region or availability zone. Ideal for applications with a state like databases. You can buy and sell this instances in the Reserved Instance Marketplace. With the convertibles you can change the type, the family, os, scope and tenancy for a less discount (about 66%)
+Up to 75% discount, you reserve specific instance type in specific region, tenancy and specific os. You can reserve it for 1 or 3 years (the more time, the more discount) and you can pay with a partial, total or null upfront (upfront = discount). You can reserve in a specific region or availability zone. Ideal for applications with a state like databases. You can buy and sell this instances in the Reserved Instance Marketplace. With the convertibles you can change the type, the family, os, scope and tenancy for a less discount (about 66%)
 
 ### Saving plans
 Discount same as reserved (72%), but you must fit a certain type of usage ($10/hour for 1 or 3 years), the usage beyond the plan is billed at On-Demand price.
