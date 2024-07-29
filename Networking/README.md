@@ -36,7 +36,7 @@ Allows to connect two VPCs using the AWS Network. They behave like they are the 
 ## VPC Endpoints
 VPC Endpoints allow to connect to AWS services using a private network instead of the public network. This gives enhanced security and lower latency. There are two types of VPC Endpoints:
 - Gateway, to connect only to S3 buckets of DynamoDB
-- Interface, to connect to all the other services
+- Interface, to connect to all the other services through AWS PrivateLink
 
 ## AWS PrivateLink
 AKA VPC Endpoint Services. It's a way to securely and scalably expose a service to thousands of VPCs. VPC Peering would not scale for many VPCs. This does not require VPC peering, gateways or route tables. To do it the VPC vendor must create a Network Load Balancer, and the consumer VPC must create a Network Interface. Then PrivateLink will connect these two through the AWS private network. 
