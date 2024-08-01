@@ -98,6 +98,46 @@ The ports to know are the following:
 - https 443
 - rdp 3389
 
+## Placement Groups
+The placement groups are used to deploy interdependent instances that require high throughput and low latency to communicate with each others. They are free to use.
+Depending on the type of workload you choose the placement group. They also reduce  the impact of hardware failures on applications.
+They are mainly used to deplyo large distributed and replicated workloads on multiple racks such as HDFS, HBASE, Cassandra.
+They help topology-aware programs to make intelligent data replication.
+They allow spanning across multiple AZs.
+
+You can create maximum 500 placement groups per account in each region.
+The name must be unique with the account and region.
+They can't be merged.
+An instance can be part of only one placement group.
+You can't use Dedicated hosts or any spot instance configured for hibernate or stop on interruption.
+They enable instances to use up to 10 Gbps for single-flow traffice instead of the usual 5 Gbps.
+You can launch multiple instances but the algorithm may find difficult to satisfy the resource request across hardware, so it's better to use the same type for all the instances.
+
+If there is a problem with the placement just restart all the instances to make the algorithm reschedule them.
+
+They can be shared to include instances from multiple AWS accounts.
+You can't share a placement group shared with you, only the owner can.
+If you share the placement group, the limitations do not change.
+You can only see and are responsible of your own instances in the placement group.
+
+
+### Cluster placement group
+Logical group of instances in the same Availability Zone
+They have a higher limit for TCP/IP traffic and placed in the same high-bisection of network segment.
+They are recommended when the majority of the network is between the instances in the group and when low latency and high network throughput of both are needed.
+The benefit is maximized if the instances support the enhanced networking.
+
+### Partition Placement group
+Divides the instances in logical segments called partitions. Two partitions never share the same rack. They are meant to contain the impact of and hardware failure. They are the best to deploy large distributed and replicated workloads such as HDFS, HBase and Cassandra. There can be partitions in multiple AZ in the same region to a maximum of 7 per AZ.
+Offers visibility into the partitions for topology-aware applications.
+If using a dedicated instance it can have a maximum of two partitions.
+Capacity reservations do not reserve capcity in a partition placement group.
+
+### Spread placement group
+Every group of instance is placed on distinct hardware. Reduces at minimum the hardware failure consegquences. Can spread instances on different racks and hosts. They can be spread in multiple AZ is same region with a maximum of 7 instances per availability zone per group.
+Host spread placement is available only with Outposts (without any restriction).
+They do not support dedicated instances.
+Capacity reservations do not reserve capacity in a spread group.
 
 ## Purchasing Options
 - On-Demand: for short workloads and pay by second
